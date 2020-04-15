@@ -22,9 +22,8 @@ sum_taxo <- function(physeq, Rank, GroupBy = NULL){
   indexNA2 <- which(grepl(pattern = "__NA$",x = taxo[[Rank]]))
   indexNA3 <- which(taxo[[Rank]] == "NA")
   indexNA <- unique(c(indexNA1,indexNA2,indexNA3))
-  print(length(unique(taxo[[Rank]][indexNA])))
   if(length(unique(taxo[[Rank]][indexNA]))>1){
-    print("merging those NA value to 'NA'")
+    warning("merging all NA values to 'NA'")
     print(unique(taxo[[Rank]][indexNA]))
     physeq <- merge_taxa(x = physeq, eqtaxa = indexNA,archetype = indexNA[1])
   }

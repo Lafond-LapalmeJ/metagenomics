@@ -1,6 +1,6 @@
 anova_by_rankEL = function(physeq, Rank="Family", Traitements="",topN=25, filename="tmp.txt"){ 
   physeq <- physeq %>%  scale_reads(round = "round")
-  dat=summarize_taxa(physeq,Rank) #summarize taxa choisi (ex:family) dans otu table   
+  dat=sum_taxo(physeq,Rank) #summarize taxa choisi (ex:family) dans otu table   
   meta=data.frame(t(data.frame(t(sample_data(physeq)))))	
   
   colTrt=which(colnames(meta)==Traitements)

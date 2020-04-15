@@ -16,7 +16,6 @@ plot_taxa_summary = function(physeq, Rank, GroupBy = NULL, TopN=-1){
   dt1[, ebarMax := max(c(0, min(meanRA + sdRA))), by = eval(Rank)]
   dt1[, ebarMin := max(c(0, min(meanRA - sdRA))), by = eval(Rank)]
   # Set zeroes to one-tenth the smallest value
-  print(dt1$ebarMin)
   ebarMinFloor = dt1[(ebarMin > 0), min(ebarMin)]
   ebarMinFloor <- ebarMinFloor / 10
   dt1[(ebarMin == 0), ebarMin := ebarMinFloor]

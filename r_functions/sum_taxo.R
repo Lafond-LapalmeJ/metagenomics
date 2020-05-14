@@ -6,7 +6,7 @@ sum_taxo <- function(physeq, Rank, GroupBy = NULL){
             paste0(rank_names(physeq), collapse = ", "), "\n",
             "Please check the list shown above and try again.")
   }
-  # check if group exist
+  # check if group exist 
   if(!is.null(GroupBy)){
     if(!GroupBy %in% sample_variables(physeq)){
       message("The argument to `GroupBy` was:\n", GroupBy,
@@ -25,7 +25,7 @@ sum_taxo <- function(physeq, Rank, GroupBy = NULL){
   if(length(unique(taxo[[Rank]][indexNA]))>1){
     warning("merging all NA values to 'NA'")
     print(unique(taxo[[Rank]][indexNA]))
-    physeq <- merge_taxa(x = physeq, eqtaxa = indexNA,archetype = indexNA[1])
+    physeq <- merge_taxa(x = physeq, eqtaxa = indexNA,archetype = 1)
   }
   # Remove upper taxonomic level
   taxo <- data.frame(tax_table(physeq))

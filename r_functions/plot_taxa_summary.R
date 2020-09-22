@@ -1,4 +1,4 @@
-plot_taxa_summary = function(physeq, Rank, GroupBy = NULL, TopN=-1){
+plot_taxa_summary = function(physeq, Rank, GroupBy = NULL, TopN=-1, showLegend = FALSE){
   # Get taxa summary table  
   dt1 = sum_taxo(physeq, Rank = Rank, GroupBy = GroupBy)
   dt2 = sum_taxo(physeq, Rank = Rank)
@@ -27,11 +27,11 @@ plot_taxa_summary = function(physeq, Rank, GroupBy = NULL, TopN=-1){
   if(!is.null(GroupBy)){
     # pRank <- pRank + facet_wrap(facets = as.formula(paste("~", GroupBy)))
     pRank <- pRank + geom_point(mapping = aes_string(colour = GroupBy),
-                                size = 5)
+                                size = 5, show.legend = showLegend)
   } else {
     # Don't include error bars for faceted version
     pRank <- pRank + geom_errorbarh(aes(xmax = ebarMax,
-                                        xmin = ebarMin))
+                                        xmin = ebarMin), show.legend = showLegend)
   }
   return(pRank)
 }  
